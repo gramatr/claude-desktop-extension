@@ -1,0 +1,58 @@
+{
+  "manifest_version": "0.3",
+  "name": "gramatr",
+  "display_name": "gramatr",
+  "version": "0.30.7",
+  "description": "grāmatr — real-time intelligent context engineering for Claude Desktop. Every prompt pre-classified via multi-head classification pipeline; behavioral directives and quality criteria delivered before the model responds.",
+  "long_description": "grāmatr℠ is a patent-pending real-time intelligent context engineering layer. This extension bundles a local stdio bridge that connects Claude Desktop to the grāmatr intelligence server at api.gramatr.com.\n\nEvery prompt runs through a multi-head classification pipeline (~5 ms) that pre-routes the request, assembles behavioral directives and quality criteria, and pulls relevant context from past work — so the model skips orientation overhead and starts working immediately.\n\nFour measurable wins:\n• ~2,700 tokens delivered as input context per request, displacing the reasoning Claude would otherwise generate as expensive output tokens\n• System-prompt collapse — structured contract replaces tens of thousands of tokens of behavioral enforcement\n• Semantic retrieval — past decisions, preferences, and project state pulled in automatically\n• Consistent behavior — the same directives and quality gates on every prompt, every session; each output gated with a recorded PASS/FAIL\n\nAuthentication uses OAuth 2.0 — the bundled bridge discovers the auth server (RFC 9728 / RFC 8414), registers a public PKCE client dynamically, and runs the authorization-code flow (RFC 8628 device-code for headless). No API key, no manual client setup.",
+  "author": {
+    "name": "gramatr",
+    "url": "https://gramatr.com"
+  },
+  "homepage": "https://gramatr.com",
+  "documentation": "https://api.gramatr.com/.well-known/mcp/server-card.json",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gramatr/gramatr"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "keywords": [
+    "ai",
+    "mcp",
+    "routing",
+    "intelligence",
+    "gramatr",
+    "claude-desktop"
+  ],
+  "icon": "icon.png",
+  "server": {
+    "type": "node",
+    "entry_point": "bin/gramatr-proxy.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/bin/gramatr-proxy.js"
+      ],
+      "env": {
+        "GRAMATR_URL": "https://api.gramatr.com/mcp"
+      }
+    }
+  },
+  "compatibility": {
+    "claude_desktop": ">=1.0.0",
+    "platforms": [
+      "darwin",
+      "win32"
+    ]
+  },
+  "privacy_policies": [
+    "https://gramatr.com/privacy"
+  ],
+  "tools_generated": true,
+  "prompts_generated": true,
+  "_meta": {
+    "gramatr": {
+      "resources_generated": true
+    }
+  }
+}
